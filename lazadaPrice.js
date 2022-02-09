@@ -3,9 +3,7 @@ const puppeteer = require("puppeteer");
 const priceString = ".pdp-price_size_xl";
 
 const getPrice = async (link) => {
-  const browser = await puppeteer.launch({
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(link, {
     waitUntil: "networkidle2",
