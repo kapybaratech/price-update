@@ -1,9 +1,9 @@
-const puppeteer = require("puppeteer");
+const { getPuppeteerInstance } = require("./util");
 
 const priceString = ".pdp-price_size_xl";
 
 const getPrice = async (link) => {
-  const browser = await puppeteer.launch();
+  const browser = getPuppeteerInstance();
   const page = await browser.newPage();
   let value;
   try {
@@ -17,7 +17,7 @@ const getPrice = async (link) => {
   } catch (e) {
     console.log(e);
   } finally {
-    await browser.close();
+    await page.close();
     return value;
   }
 };

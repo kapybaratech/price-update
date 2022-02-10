@@ -1,12 +1,13 @@
-const puppeteer = require("puppeteer");
+const { getPuppeteerInstance } = require("./util");
 
 const priceString = "._2v0Hgx";
 
 const getPrice = async (link, variations) => {
-  const browser = await puppeteer.launch();
+  const browser = await getPuppeteerInstance();
   const page = await browser.newPage();
   let value;
   try {
+    console.log("navigating to", link);
     await page.goto(link, {
       waitUntil: "networkidle2",
     });
@@ -24,7 +25,7 @@ const getPrice = async (link, variations) => {
   } catch (e) {
     console.log(e);
   } finally {
-    await browser.close();
+    await page.close();
   }
   return value;
 };
