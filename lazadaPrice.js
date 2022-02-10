@@ -5,16 +5,21 @@ const priceString = ".pdp-price_size_xl";
 const getPrice = async (link) => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto(link, {
-    waitUntil: "networkidle2",
-  });
+  let value;
+  try {
+    await page.goto(link, {
+      waitUntil: "networkidle2",
+    });
 
-  await page.waitForSelector(priceString);
-  let element = await page.$(priceString);
-  let value = await page.evaluate((el) => el.textContent, element);
-
-  await browser.close();
-  return value;
+    await page.waitForSelector(priceString);
+    let element = await page.$(priceString);
+    value = await page.evaluate((el) => el.textContent, element);
+  } catch (e) {
+    console.log(e);
+  } finally {
+    await browser.close();
+    return value;
+  }
 };
 
 const getPriceMiddleware = async (req, res, next) => {

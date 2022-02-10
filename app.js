@@ -6,7 +6,7 @@ const {
   getPriceMiddleware: getLazadaPriceMiddleware,
 } = require("./lazadaPrice");
 const app = express();
-const port = 3000;
+const port = 3001;
 
 const errorMiddleware = (error, req, res, next) => {
   try {
