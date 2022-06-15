@@ -7,16 +7,18 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod-run":"npm i && nodemon app.js"
+    "prod-run": "npm i && nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2",
+    "pdf-lib": "^1.17.1",
     "puppeteer": "^13.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "type": "module"
 }

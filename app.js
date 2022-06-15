@@ -1,10 +1,6 @@
-const express = require("express");
-const {
-  getPriceMiddleware: getShopeePriceMiddleware,
-} = require("./shopeePrice");
-const {
-  getPriceMiddleware: getLazadaPriceMiddleware,
-} = require("./lazadaPrice");
+import express from "express";
+import { generatePriceReport } from "./generatePriceReport.js";
+
 const app = express();
 const port = 3001;
 
@@ -25,8 +21,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.post("/shopeePrice", getShopeePriceMiddleware);
-app.post("/lazadaPrice", getLazadaPriceMiddleware);
+app.post("/priceReport", generatePriceReport);
 
 app.use(errorMiddleware);
 
